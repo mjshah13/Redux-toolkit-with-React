@@ -4,7 +4,7 @@ import { decrement, increment, incrementByAmount } from "./redux/counter";
 import "./styles.css";
 
 export default function App() {
-  const { count } = useSelector((state) => state.counter);
+  const { count, loading, error } = useSelector((state) => state.counter);
   const dispatch = useDispatch();
   return (
     <div className="App">
@@ -12,8 +12,9 @@ export default function App() {
       <button onClick={() => dispatch(increment())}>increment</button>
       <button onClick={() => dispatch(decrement())}>decrement</button>
       <button onClick={() => dispatch(incrementByAmount(33))}>
-        Increment by 33
+        {loading ? "Loading..." : "Increment by 33"}
       </button>
+      <h1>{error}</h1>
     </div>
   );
 }
